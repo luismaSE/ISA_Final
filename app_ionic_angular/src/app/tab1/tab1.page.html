@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tab 1
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 1</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="container">
+    <div class="ion-padding">
+      <h1>Ionic Angular Rest Example.</h1>
+    </div>
+    <div class="ion-padding">
+      <ion-button (click)="getAuthors()">Obtener Autores</ion-button>
+    </div>
+    <ion-grid class="ion-padding">
+      <ion-row>
+        <ion-col sizeMd="2" class="col-border bgcolor ion-text-center">
+          <ion-text color="primary">ID</ion-text>
+        </ion-col>
+        <ion-col sizeMd="2" class="col-border bgcolor ion-text-center">
+          <ion-text color="primary">Nombre</ion-text>
+        </ion-col>
+        <ion-col sizeMd="2" class="col-border bgcolor ion-text-center">
+          <ion-text color="primary">Apellido</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let author of arrayAuthors">
+        <ion-col sizeMd="2" class="col-border ion-text-center">
+          {{ author.id }}
+        </ion-col>
+        <ion-col sizeMd="2" class="col-border ion-text-center">
+          {{ author.firstName }}
+        </ion-col>
+        <ion-col sizeMd="2" class="col-border ion-text-center">
+          {{ author.lastName }}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

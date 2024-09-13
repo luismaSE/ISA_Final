@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Library Suite" parallel="tests" thread-count="2">
+  <!-- Definición de la Suite de Pruebas -->
+  <test name="Service Tests">
+    <!-- Primer Test, agrupa pruebas del servicio -->
+    <classes>
+      <class name="um.luisma.library.BookServiceTest"/>
+      <class name="um.luisma.library.ClientServiceTest"/>
+    </classes>
+  </test>
+</suite>
