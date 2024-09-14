@@ -24,6 +24,8 @@ node {
 
     stage('npm install') {
         sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm"
+        sh "nvm install 16"
+        sh "nvm use 16"
         sh "npm install"
     }
     stage('backend tests') {
