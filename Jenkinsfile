@@ -9,20 +9,9 @@ node {
         sh "java -version"
     }
 
-    stage('debug') {
-            steps {
-                sh 'pwd'
-                sh 'ls -la'
-                sh 'ls -la jhipster_app'
-            }
-        }
-
     stage('clean') {
-        dir('jhipster_app') {
-            sh 'ls -la'  // Para verificar el contenido del directorio
-            sh "chmod +x mvnw"
-            sh "./mvnw -ntp clean -P-webapp"
-        }
+        sh "chmod +x mvnw"
+        sh "./mvnw -ntp clean -P-webapp"
     }
     stage('nohttp') {
         sh "./mvnw -ntp checkstyle:check"
