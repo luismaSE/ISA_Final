@@ -19,9 +19,6 @@ node {
 
     stage('install tools') {
         sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:install-node-and-npm@install-node-and-npm"
-        sh "nvm install 16"
-        sh "nvm use 16"
-        sh "npm install -g @angular/cli"
     }
 
     stage('npm install') {
