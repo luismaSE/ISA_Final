@@ -45,6 +45,8 @@ node {
     }
 
     stage('packaging') {
+        sh "npm install"
+        sh "chmod -R 755 node_modules"
         sh "./mvnw -ntp verify -P-webapp -Pprod -DskipTests"
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
     }
