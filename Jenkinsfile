@@ -19,10 +19,12 @@ node {
 
     stage('install tools') {
         sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:install-node-and-npm@install-node-and-npm"
+        sh "npm install -g @angular/cli"
     }
 
     stage('npm install') {
         sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm"
+        sh "npm install"
     }
     stage('backend tests') {
         try {
@@ -36,7 +38,9 @@ node {
 
     stage('frontend tests') {
         try {
-            sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm -Dfrontend.npm.arguments='run test'"
+            sh "chmod +x node_modules/.bin/ng"
+            sh "node_modules/.bin/ng test --coverage --log-heap-usage -w=2 --watch=false --browsers=ChromeHeadless"
+            // sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm -Dfrontend.npm.arguments='run test'"
         } catch(err) {
             throw err
         } finally {
@@ -45,7 +49,6 @@ node {
     }
 
     stage('packaging') {
-        sh "npm install"
         sh "chmod -R 755 node_modules"
         sh "./mvnw -ntp verify -P-webapp -Pprod -DskipTests"
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
