@@ -576,7 +576,7 @@
                             </platforms>
                         </from>
                         <to>
-                            <image>xyonse/isa_final::latest</image>
+                            <image>xyonse/isa_final:latest</image>
                             <tags>
                                 <tag>${project.version}</tag>
                                 <tag>latest</tag>
