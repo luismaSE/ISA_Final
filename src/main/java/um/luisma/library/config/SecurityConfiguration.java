@@ -92,14 +92,15 @@ public class SecurityConfiguration {
             .antMatchers("/management/prometheus").permitAll()
             .antMatchers("/management/**").permitAll()  // Cambiado a permitAll
         .and()
-            .httpBasic();
-            // Filtro JWT deshabilitado: .apply(securityConfigurerAdapter());
+            .httpBasic()            
+        .and()
+            .apply(securityConfigurerAdapter());
         return http.build();
         // @formatter:on
     }
 
     // Comentado para deshabilitar JWT
-    // private JWTConfigurer securityConfigurerAdapter() {
-    //     return new JWTConfigurer(tokenProvider);
-    // }
+    private JWTConfigurer securityConfigurerAdapter() {
+        return new JWTConfigurer(tokenProvider);
+    }
 }

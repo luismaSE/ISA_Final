@@ -23,9 +23,9 @@ class ClientMapperTest {
     public void testDtoToEntityMapping() {
         ClientDTO clientDTO = new ClientDTO();
         clientDTO.setId(1L);
-        clientDTO.setFirstName("Martin");
-        clientDTO.setLastName("Reyes");
-        clientDTO.setEmail("martin@gmail.com");
+        clientDTO.setFirstName("Luisma");
+        clientDTO.setLastName("Sarmiento");
+        clientDTO.setEmail("luisma@gmail.com");
         clientDTO.setAddress("Mendoza, Argentina");
         clientDTO.setPhone("1234");
 
@@ -43,9 +43,9 @@ class ClientMapperTest {
     public void testEntityToDtoMapping() {
         Client client = new Client();
         client.setId(1L);
-        client.setFirstName("Martin");
-        client.setLastName("Reyes");
-        client.setEmail("martin@gmail.com");
+        client.setFirstName("Luisma");
+        client.setLastName("Sarmiento");
+        client.setEmail("luisma@gmail.com");
         client.setAddress("Mendoza, Argentina");
         client.setPhone("1234");
 
@@ -65,4 +65,56 @@ class ClientMapperTest {
         Client client = clientMapper.toEntity(clientDTO);
         assertNull(client);
     }
+
+    @Test
+    public void testNullEntityToDtoMapping() {
+        Client client = null;
+        ClientDTO clientDTO = clientMapper.toDto(client);
+        assertNull(clientDTO);
+    }
+
+    @Test
+    public void testDtoToEntityWithNullFields() {
+        ClientDTO clientDTO = new ClientDTO();
+        clientDTO.setId(null);
+        clientDTO.setFirstName(null);
+        clientDTO.setLastName(null);
+        clientDTO.setEmail(null);
+        clientDTO.setAddress(null);
+        clientDTO.setPhone(null);
+
+        Client client = clientMapper.toEntity(clientDTO);
+
+        assertNull(client.getId());
+        assertNull(client.getFirstName());
+        assertNull(client.getLastName());
+        assertNull(client.getEmail());
+        assertNull(client.getAddress());
+        assertNull(client.getPhone());
+    }
+
+    @Test
+    public void testEntityToDtoWithNullFields() {
+        Client client = new Client();
+        client.setId(null);
+        client.setFirstName(null);
+        client.setLastName(null);
+        client.setEmail(null);
+        client.setAddress(null);
+        client.setPhone(null);
+
+        ClientDTO clientDTO = clientMapper.toDto(client);
+
+        assertNull(clientDTO.getId());
+        assertNull(clientDTO.getFirstName());
+        assertNull(clientDTO.getLastName());
+        assertNull(clientDTO.getEmail());
+        assertNull(clientDTO.getAddress());
+        assertNull(clientDTO.getPhone());
+    }
+
+    
+
+
+
 }
